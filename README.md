@@ -19,5 +19,5 @@ pip install -r requirements.txt
 3. Run flask app and head over to [port 5000](http://127.0.0.1:5000) in browser (by default)
 
 ```bash
-python index.py
+python app.py
 ```
