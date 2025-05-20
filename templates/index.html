@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Description Bias Analysis</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        textarea { width: 100%; height: 200px; margin-bottom: 1rem; }
+        .highlight { background-color: yellow; }
+        .suggestion { color: green; font-style: italic; }
+    </style>
+</head>
+<body>
+    <h1>Job Description Bias Analyzer</h1>
+    <form id="biasForm" enctype="multipart/form-data">
+        <textarea name="job_description" id="job_description" placeholder="Paste your job description here...">We are looking for a young and energetic individual to join our fast-paced team. The ideal candidate should be a recent graduate with strong communication skills. This role requires someone who can man up to tough situations and handle pressure well. We prefer someone with manpower experience who can multitask efficiently. Candidates should be able-bodied and willing to work flexible hours.</textarea>
+        <input type="file" id="fileInput">
+        <button type="submit">Analyze</button>
+    </form>
+
+    <div id="results" style="display:none;">
+        <h2>Bias Analysis</h2>
+        <ul id="biasScores"></ul>
+
+        <h3>Highlighted Job Description</h3>
+        <div id="highlightedText"></div>
+
+        <h3>Rewrite Suggestions</h3>
+        <ul id="suggestions"></ul>
+    </div>
+
+    <script>
+        document.getElementById("biasForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const textArea = document.getElementById("job_description");
+            const fileInput = document.getElementById("fileInput");
+            let formData = new FormData();
+
+            if (fileInput.files.length > 0) {
+                formData.append("file", fileInput.files[0]);
+            } else {
+                formData.append("text", textArea.value);
+            }
+
+            const response = await fetch("/analyze", { method: "POST", body: formData });
+            const data = await response.json();
+
+            document.getElementById("results").style.display = "block";
+            document.getElementById("biasScores").innerHTML = Object.entries(data.bias_scores).map(
+                ([type, score]) => `<li>${type}: ${score}%</li>`
+            ).join('');
+
+            document.getElementById("highlightedText").innerHTML = data.highlighted_text;
+            document.getElementById("suggestions").innerHTML = data.suggestions.map(
+                s => `<li>${s.original} → <span class="suggestion">${s.suggestion}</span></li>`
+            ).join('');
+        });
+    </script>
+</body>
+</html>
