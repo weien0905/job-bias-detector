@@ -28,16 +28,13 @@ def analyze_bias(text):
     suggestions = []
     for word, replacement in rewrite_dict.items():
         if word in text:
-            suggestions.append({
-                "original": word,
-                "suggestion": replacement
-            })
+            suggestions.append(f"<li class='list-group-item'>{word} → <span class='suggestion'>{replacement}</span></li>")
 
     highlighted_text = text
     for word, markup in highlights.items():
         highlighted_text = highlighted_text.replace(word, markup)
 
-    return biases, highlighted_text, suggestions
+    return biases, highlighted_text, " ".join(suggestions)
 
 @app.route('/')
 def index():
