@@ -306,7 +306,7 @@ def call_gemini_api(prompt):
     :return: The response from the Gemini API.
     """
     
-    client = genai.Client(api_key="AIzaSyB0HHC3_4eOLe5sgCvd7tOn6rlWP9VZnPo")
+    client = genai.Client(api_key="")
     result = client.models.generate_content(
         model="gemini-2.0-flash",
         contents=prompt,
