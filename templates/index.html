@@ -58,73 +58,79 @@
                 </div>
             </div>
             {% endif %}
-        </div>
 
-        <!-- Right column: Bias Summary + WPT -->
-        <div class="col-md-4">
-            <div class="card border-secondary mb-4">
-                <div class="card-header fw-bold">Bias Summary</div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between">
-                        Feminine Bias
-                        <span class="{{ 'text-danger' if feminine else 'text-success' }}">
-                            {{ 'Biased (❌)' if feminine else 'Not Biased (✅)' }}
-                        </span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        Masculine Bias
-                        <span class="{{ 'text-danger' if masculine else 'text-success' }}">
-                            {{ 'Biased (❌)' if masculine else 'Not Biased (✅)' }}
-                        </span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        Gender Bias
-                        <span class="{{ 'text-danger' if gender else 'text-success' }}">
-                            {{ 'Biased (❌)' if gender else 'Not Biased (✅)' }}
-                        </span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        Marital Status Bias
-                        <span class="{{ 'text-danger' if marital else 'text-success' }}">
-                            {{ 'Biased (❌)' if marital else 'Not Biased (✅)' }}
-                        </span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        Appearance Bias
-                        <span class="{{ 'text-danger' if appearance else 'text-success' }}">
-                            {{ 'Biased (❌)' if appearance else 'Not Biased (✅)' }}
-                        </span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        Age Bias
-                        <span class="{{ 'text-danger' if age else 'text-success' }}">
-                            {{ 'Biased (❌)' if age else 'Not Biased (✅)' }}
-                        </span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        Religion Bias
-                        <span class="{{ 'text-danger' if religion else 'text-success' }}">
-                            {{ 'Biased (❌)' if religion else 'Not Biased (✅)' }}
-                        </span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="card border-warning">
-                <div class="card-header fw-bold text-warning">WPT Bias Indicators</div>
+            {% if suggestions %}
+            <div class="card mt-4">
+                <div class="card-header fw-bold">Gemini Rewrite Suggestion</div>
                 <div class="card-body">
-                    {% if wpt %}
-                        <p class="mb-2">⚠️ Detected workplace culture phrases:</p>
-                        <ul class="mb-0">
-                            {% for phrase in wpt %}
-                                <li class="text-danger">{{ phrase }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p class="text-success mb-0">✅ No WPT indicators found.</p>
-                    {% endif %}
+                    <pre style="white-space: pre-wrap;">{{ suggestions }}</pre>
                 </div>
             </div>
+            {% endif %}
+        </div>
+
+        <!-- Right column: Bias Summary -->
+        <div class="col-md-4">
+            <div class="card border-secondary mb-4">
+                <div class="card-header fw-bold">Bias Found</div>
+                <ul class="list-group list-group-flush">
+                    {% if bias_type == "Feminine_Bias" %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        Feminine Bias
+                        <span class="text-danger">Biased (❌)</span>
+                    </li>
+                    {% elif bias_type == "Masculine_Bias" %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        Masculine Bias
+                        <span class="text-danger">Biased (❌)</span>
+                    </li>
+                    {% elif bias_type == "Racial_Bias" %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        Racial Bias
+                        <span class="text-danger">Biased (❌)</span>
+                    </li>
+                    {% elif bias_type == "Age_Bias" %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        Age Bias
+                        <span class="text-danger">Biased (❌)</span>
+                    </li>
+                    {% elif bias_type == "Disability_Bias" %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        Disability Bias
+                        <span class="text-danger">Biased (❌)</span>
+                    </li>
+                    {% elif bias_type == "LGBTQ_Bias" %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        LGBTQ Bias
+                        <span class="text-danger">Biased (❌)</span>
+                    </li>
+                    {% else %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        No Major Bias Detected
+                        <span class="text-success">Not Biased (✅)</span>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% if lime_html %}
+            <div class="card mt-12">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">LIME Explanation</h5>
+                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#limeCollapse" aria-expanded="false" aria-controls="limeCollapse">
+                        Show/Hide
+                    </button>
+                </div>
+                <div class="collapse" id="limeCollapse">
+                    <div class="card-body" style="overflow-x:auto;">
+                        {{ lime_html | safe }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>

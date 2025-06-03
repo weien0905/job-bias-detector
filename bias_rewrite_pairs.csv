@@ -1,0 +1,25 @@
+biased,neutral,bias_type
+We want a tough guy to lead the team.,We want a resilient leader for the team.,Masculine_Bias
+A man’s voice is more authoritative for this role.,A confident and clear communicator is ideal for this role.,Masculine_Bias
+Must be assertive like a real man.,Must be assertive and confident.,Masculine_Bias
+Looking for a strong male presence in the office.,Looking for a strong and dependable professional presence.,Masculine_Bias
+This role suits a caring woman.,This role suits someone with a nurturing mindset.,Feminine_Bias
+We need a lady with grace to handle clients.,We need someone with professionalism to handle clients.,Feminine_Bias
+A woman would be perfect for this hospitality role.,An individual with great interpersonal skills would be perfect for this role.,Feminine_Bias
+Ideal for stay-at-home moms returning to work.,Ideal for individuals re-entering the workforce.,Feminine_Bias
+Prefer someone with a Western background.,Looking for candidates with global business experience.,Racial_Bias
+Only native English speakers from the UK or US.,Looking for fluent English speakers.,Racial_Bias
+Candidates from certain regions perform better.,Candidates with relevant experience perform better.,Racial_Bias
+Not suitable for people from developing countries.,We welcome all qualified candidates regardless of nationality.,Racial_Bias
+Seeking a young and energetic intern.,Seeking an enthusiastic and motivated intern.,Age_Bias
+Older applicants may not be tech-savvy.,Looking for applicants comfortable with new technologies.,Age_Bias
+Retired people are too slow for this job.,We need efficient and reliable candidates.,Age_Bias
+Only recent graduates should apply.,Open to all applicants with relevant qualifications.,Age_Bias
+Must have no physical limitations.,Must be able to fulfill essential job functions with or without accommodations.,Disability_Bias
+We can’t accommodate wheelchair users.,Our facilities are currently being updated for accessibility.,Disability_Bias
+"No one with medical conditions, please.",Candidates must be able to handle job responsibilities effectively.,Disability_Bias
+This fast-paced job is not for the disabled.,This fast-paced job requires adaptability and focus.,Disability_Bias
+We want a traditional family man.,We want someone responsible and committed.,LGBTQ_Bias
+This job is not for flamboyant types.,This job requires professionalism in the workplace.,LGBTQ_Bias
+We maintain conservative values.,We maintain professional values aligned with our company culture.,LGBTQ_Bias
+Applicants should reflect our family-friendly image.,Applicants should align with our organizational values and mission.,LGBTQ_Bias
